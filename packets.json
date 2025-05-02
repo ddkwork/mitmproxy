@@ -1,0 +1,140 @@
+{
+ "id": "56833df3-d375-4e6c-84fc-4115ab6c900c",
+ "type": "root_container",
+ "Data": {
+  "StreamDirection": 0,
+  "SchemerType": 0,
+  "Method": "",
+  "Host": "",
+  "Path": "",
+  "ContentType": "",
+  "ContentLength": 0,
+  "Status": "",
+  "Note": "",
+  "Process": "",
+  "PadTime": 0,
+  "ReqBodyDecoder": {
+   "HttpDump": "",
+   "Payload": null,
+   "PayloadHexDump": "",
+   "UnitTest": "",
+   "SteamAesKey": null,
+   "Steam": "",
+   "ProtoBuf": "",
+   "Tdf": "",
+   "Taf": "",
+   "Acc": "",
+   "Websocket": "",
+   "Msgpack": ""
+  },
+  "RespBodyDecoder": {
+   "HttpDump": "",
+   "Payload": null,
+   "PayloadHexDump": "",
+   "UnitTest": "",
+   "SteamAesKey": null,
+   "Steam": "",
+   "ProtoBuf": "",
+   "Tdf": "",
+   "Taf": "",
+   "Acc": "",
+   "Websocket": "",
+   "Msgpack": ""
+  },
+  "WebsocketMessageType": 0,
+  "WebsocketStatus": ""
+ },
+ "Columns": [
+  {
+   "ID": 0,
+   "Current": 90.981445,
+   "Minimum": 90.981445,
+   "Maximum": 10000,
+   "AutoMinimum": 0,
+   "AutoMaximum": 0,
+   "Cell": "SchemerType"
+  },
+  {
+   "ID": 1,
+   "Current": 55.80371,
+   "Minimum": 55.80371,
+   "Maximum": 10000,
+   "AutoMinimum": 0,
+   "AutoMaximum": 0,
+   "Cell": "Method"
+  },
+  {
+   "ID": 2,
+   "Current": 37.756836,
+   "Minimum": 37.756836,
+   "Maximum": 10000,
+   "AutoMinimum": 0,
+   "AutoMaximum": 0,
+   "Cell": "Host"
+  },
+  {
+   "ID": 3,
+   "Current": 36.731445,
+   "Minimum": 36.731445,
+   "Maximum": 10000,
+   "AutoMinimum": 0,
+   "AutoMaximum": 0,
+   "Cell": "Path"
+  },
+  {
+   "ID": 4,
+   "Current": 87.3584,
+   "Minimum": 87.3584,
+   "Maximum": 10000,
+   "AutoMinimum": 0,
+   "AutoMaximum": 0,
+   "Cell": "ContentType"
+  },
+  {
+   "ID": 5,
+   "Current": 99.92285,
+   "Minimum": 99.92285,
+   "Maximum": 10000,
+   "AutoMinimum": 0,
+   "AutoMaximum": 0,
+   "Cell": "ContentLength"
+  },
+  {
+   "ID": 6,
+   "Current": 48.003906,
+   "Minimum": 48.003906,
+   "Maximum": 10000,
+   "AutoMinimum": 0,
+   "AutoMaximum": 0,
+   "Cell": "Status"
+  },
+  {
+   "ID": 7,
+   "Current": 37.95508,
+   "Minimum": 37.95508,
+   "Maximum": 10000,
+   "AutoMinimum": 0,
+   "AutoMaximum": 0,
+   "Cell": "Note"
+  },
+  {
+   "ID": 8,
+   "Current": 58.73633,
+   "Minimum": 58.73633,
+   "Maximum": 10000,
+   "AutoMinimum": 0,
+   "AutoMaximum": 0,
+   "Cell": "Process"
+  },
+  {
+   "ID": 9,
+   "Current": 63.78125,
+   "Minimum": 63.78125,
+   "Maximum": 10000,
+   "AutoMinimum": 0,
+   "AutoMaximum": 0,
+   "Cell": "PadTime"
+  }
+ ],
+ "PreventUserColumnResize": false
+}

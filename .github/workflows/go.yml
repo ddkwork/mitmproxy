@@ -1,0 +1,33 @@
+name: Go
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.24.2'
+
+      - name: Install dependency libraries
+        run: |
+          sudo apt-get update
+          sudo apt-get -y install libgl1-mesa-dev xorg-dev
+
+      - name: Build
+        run: go build -x ./...
+
+      - name: Test
+        #      run: go test -x ./...
+        run: go run golang.org/x/tools/gopls/internal/analysis/modernize/cmd/modernize@latest -diff ./...  &&  go run golang.org/x/tools/gopls/internal/analysis/modernize/cmd/modernize@latest -fix ./...
+
+        if: github.event_name == 'push'
