@@ -7,9 +7,9 @@ require (
 	github.com/Dreamacro/clash v1.18.0
 	github.com/Philipp15b/go-steam/v3 v3.0.0
 	github.com/bogdanfinn/utls v1.6.5
-	github.com/ddkwork/golibrary v0.1.2-0.20250427202621-955ed5be8d58
+	github.com/ddkwork/golibrary v0.1.2-0.20250407120441-055d4aa0003a
 	github.com/ddkwork/unison v0.0.0-20250324092417-167fd55775cc
-	github.com/ddkwork/ux v0.0.0-20250502054828-11d320ca5159
+	github.com/ddkwork/ux v0.0.0-20250502153508-194536dc9d04
 	github.com/ddkwork/websocket v0.0.0-20240601052833-daa7b9f82130
 	github.com/duo/gommtls v0.0.0-20231106002643-d82b1a1ef921
 	github.com/elazarl/goproxy v1.7.2
@@ -28,7 +28,7 @@ require (
 	gioui.org/x v0.8.2-0.20250115181849-c005f2ad1592 // indirect
 	git.wow.st/gmp/jni v0.0.0-20210610011705-34026c7e22d0 // indirect
 	github.com/Dreamacro/protobytes v0.0.0-20230617041236-6500a9f4f158 // indirect
-	github.com/alecthomas/chroma/v2 v2.15.0 // indirect
+	github.com/alecthomas/chroma/v2 v2.17.2 // indirect
 	github.com/andybalholm/brotli v1.1.1 // indirect
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
 	github.com/cloudflare/circl v1.5.0 // indirect
@@ -49,10 +49,10 @@ require (
 	github.com/pkg/term v1.2.0-beta.2 // indirect
 	github.com/quic-go/qpack v0.5.1 // indirect
 	github.com/richardwilkes/json v0.3.0 // indirect
-	github.com/yuin/goldmark v1.7.8 // indirect
+	github.com/yuin/goldmark v1.7.11 // indirect
 	go.uber.org/mock v0.5.0 // indirect
-	golang.org/x/exp v0.0.0-20250305212735-054e65f0b394 // indirect
-	golang.org/x/exp/shiny v0.0.0-20250305212735-054e65f0b394 // indirect
+	golang.org/x/exp v0.0.0-20250408133849-7e4ce0ab07d0 // indirect
+	golang.org/x/exp/shiny v0.0.0-20250408133849-7e4ce0ab07d0 // indirect
 	golang.org/x/image v0.26.0 // indirect
 	golang.org/x/mod v0.24.0 // indirect
 	golang.org/x/sync v0.13.0 // indirect
