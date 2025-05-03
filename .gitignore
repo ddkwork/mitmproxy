@@ -1,7 +1,7 @@
 log.log
 .idea
 plugin
-/internal/tls/
 /internal/todo/
 /internal/sniproxy/
 .exe
+/internal/tls/
