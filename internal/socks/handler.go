@@ -5,10 +5,10 @@ import (
 	"errors"
 	"fmt"
 	"net"
+	"slices"
 
 	"github.com/ddkwork/golibrary/mylog"
 	"github.com/ddkwork/mitmproxy/packet"
-	"slices"
 )
 
 type Socks4Handler struct {

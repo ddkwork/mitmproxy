@@ -1,9 +1,10 @@
 package mitmproxy
 
 import (
-	"github.com/ddkwork/mitmproxy/internal/socks"
 	"net"
 	"time"
+
+	"github.com/ddkwork/mitmproxy/internal/socks"
 
 	"github.com/ddkwork/golibrary/mylog"
 	"github.com/ddkwork/mitmproxy/packet"

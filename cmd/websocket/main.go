@@ -1,7 +1,6 @@
 package main
 
 import (
-	"github.com/ddkwork/mitmproxy/internal/mitmproxy"
 	"log"
 	"net"
 	"net/http"
@@ -9,6 +8,8 @@ import (
 	"os"
 	"os/signal"
 	"time"
+
+	"github.com/ddkwork/mitmproxy/internal/mitmproxy"
 
 	"github.com/ddkwork/websocket"
 

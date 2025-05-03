@@ -185,7 +185,6 @@ func NewTable() ux.Widget {
 			// responseBodyDecoder.Msgpack.SetCode(row.Data.RespBodyDecoder.Msgpack)
 		},
 		RowDoubleClickCallback: func() {
-
 		},
 		SetRootRowsCallBack: func() {
 			go func() {

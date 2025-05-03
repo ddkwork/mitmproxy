@@ -2,9 +2,10 @@ package mitmproxy
 
 import (
 	"crypto/tls"
-	"github.com/ddkwork/mitmproxy/internal/socks"
 	"net/http"
 	"time"
+
+	"github.com/ddkwork/mitmproxy/internal/socks"
 
 	"github.com/ddkwork/mitmproxy/packet"
 )

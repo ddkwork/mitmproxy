@@ -88,7 +88,6 @@ func TestName(t *testing.T) {
 			mylog.Struct(table.SelectedNode.Data) // todo use it show into http request and response
 		},
 		RowDoubleClickCallback: func() {
-
 		},
 		SetRootRowsCallBack: func() {
 			containers := make([]*ux.Node[packet.EditData], 0)

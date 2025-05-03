@@ -10,7 +10,6 @@ import (
 	"context"
 	"errors"
 	"fmt"
-	"github.com/ddkwork/mitmproxy/internal/ascii"
 	"io"
 	"log"
 	"mime"
@@ -22,6 +21,8 @@ import (
 	"strings"
 	"sync"
 	"time"
+
+	"github.com/ddkwork/mitmproxy/internal/ascii"
 
 	"github.com/ddkwork/golibrary/mylog"
 

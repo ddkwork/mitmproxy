@@ -7,8 +7,9 @@
 package mitmproxy
 
 import (
-	"github.com/ddkwork/mitmproxy/internal"
 	"io"
+
+	"github.com/ddkwork/mitmproxy/internal"
 )
 
 // NewChunkedReader returns a new chunkedReader that translates the data read from r
