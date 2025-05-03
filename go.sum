@@ -31,8 +31,8 @@ github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSs
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc h1:U9qPSI2PIWSS1VwoXQT9A3Wy9MM3WgvqSxFWenqJduM=
 github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
-github.com/ddkwork/golibrary v0.0.0-20250503022829-ab9f0d645334 h1:qIkuIR1oHnhVTMVrHAoeMm1PtvyqTpUfr5ncuvV/FSo=
-github.com/ddkwork/golibrary v0.0.0-20250503022829-ab9f0d645334/go.mod h1:JkTN5ZkZYptsfII6orURXexoJILmpfgXPT9dEWEEQjQ=
+github.com/ddkwork/golibrary v0.1.2-0.20250427202621-955ed5be8d58 h1:fHyc/lLdtd4FpOrAEc1OnYjd1duPB/updYx4opJTYa4=
+github.com/ddkwork/golibrary v0.1.2-0.20250427202621-955ed5be8d58/go.mod h1:JkTN5ZkZYptsfII6orURXexoJILmpfgXPT9dEWEEQjQ=
 github.com/ddkwork/ux v0.0.0-20250502153508-194536dc9d04 h1:4LCDIzBOZLICoGjFP1+cRtdbflbc6NjtGJbXgaJUhOQ=
 github.com/ddkwork/ux v0.0.0-20250502153508-194536dc9d04/go.mod h1:neY8/QlzfVa48k4U39VPZYrKejyzPYvwZF0vSrfMbV8=
 github.com/ddkwork/websocket v0.0.0-20240601052833-daa7b9f82130 h1:Wcl8L8sgXHlvBMzG40Ir6R8omUet+zHjIakeWTjIWro=
