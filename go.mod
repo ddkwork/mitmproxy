@@ -7,7 +7,7 @@ require (
 	github.com/Dreamacro/clash v1.18.0
 	github.com/Philipp15b/go-steam/v3 v3.0.0
 	github.com/bogdanfinn/utls v1.6.5
-	github.com/ddkwork/golibrary v0.1.2-0.20250407120441-055d4aa0003a
+	github.com/ddkwork/golibrary v0.0.0-20250503022829-ab9f0d645334
 	github.com/ddkwork/unison v0.0.0-20250324092417-167fd55775cc
 	github.com/ddkwork/ux v0.0.0-20250502153508-194536dc9d04
 	github.com/ddkwork/websocket v0.0.0-20240601052833-daa7b9f82130
@@ -18,7 +18,7 @@ require (
 	github.com/hupe1980/socks v0.0.9
 	github.com/quic-go/quic-go v0.51.0
 	github.com/sirupsen/logrus v1.9.3
-	golang.org/x/crypto v0.37.0
+	golang.org/x/crypto v0.0.0-20210921155107-089bfa567519
 	golang.org/x/net v0.39.0
 	golang.org/x/text v0.24.0
 )
@@ -51,13 +51,13 @@ require (
 	github.com/richardwilkes/json v0.3.0 // indirect
 	github.com/yuin/goldmark v1.7.11 // indirect
 	go.uber.org/mock v0.5.0 // indirect
-	golang.org/x/exp v0.0.0-20250408133849-7e4ce0ab07d0 // indirect
+	golang.org/x/exp v0.0.0-20250305212735-054e65f0b394 // indirect
 	golang.org/x/exp/shiny v0.0.0-20250408133849-7e4ce0ab07d0 // indirect
-	golang.org/x/image v0.26.0 // indirect
+	golang.org/x/image v0.25.0 // indirect
 	golang.org/x/mod v0.24.0 // indirect
 	golang.org/x/sync v0.13.0 // indirect
-	golang.org/x/sys v0.32.0 // indirect
-	golang.org/x/tools v0.32.0 // indirect
+	golang.org/x/sys v0.31.0 // indirect
+	golang.org/x/tools v0.31.0 // indirect
 	google.golang.org/protobuf v1.33.0 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
