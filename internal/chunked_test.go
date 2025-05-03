@@ -37,7 +37,7 @@ func TestChunk(t *testing.T) {
 	}
 }
 
-//func TestChunkReadMultiple(t *testing.T) {
+// func TestChunkReadMultiple(t *testing.T) {
 //	// Bunch of small chunks, all read together.
 //	{
 //		var b bytes.Buffer
@@ -102,9 +102,9 @@ func TestChunk(t *testing.T) {
 //			t.Errorf("buf = %q; want foo", buf)
 //		}
 //	}
-//}
+// }
 
-//func TestChunkReaderAllocs(t *testing.T) {
+// func TestChunkReaderAllocs(t *testing.T) {
 //	if testing.Short() {
 //		t.Skip("skipping in short mode")
 //	}
@@ -134,9 +134,9 @@ func TestChunk(t *testing.T) {
 //	if mallocs > 1.5 {
 //		t.Errorf("mallocs = %v; want 1", mallocs)
 //	}
-//}
+// }
 
-//func TestParseHexUint(t *testing.T) {
+// func TestParseHexUint(t *testing.T) {
 //	type testCase struct {
 //		in      string
 //		want    uint64
@@ -168,7 +168,7 @@ func TestChunk(t *testing.T) {
 //			}
 //		}
 //	}
-//}
+// }
 
 func TestChunkReadingIgnoresExtensions(t *testing.T) {
 	in := "7;ext=\"some quoted string\"\r\n" + // token=quoted string
@@ -185,7 +185,7 @@ func TestChunkReadingIgnoresExtensions(t *testing.T) {
 
 // Issue 17355: ChunkedReader shouldn't block waiting for more data
 // if it can return something.
-//func TestChunkReadPartial(t *testing.T) {
+// func TestChunkReadPartial(t *testing.T) {
 //	pr, pw := io.Pipe()
 //	go func() {
 //		pw.Write([]byte("7\r\n1234567"))
@@ -205,10 +205,10 @@ func TestChunkReadingIgnoresExtensions(t *testing.T) {
 //	if got := fmt.Sprint(err); !strings.Contains(got, "malformed") {
 //		t.Fatalf("second read = %v; want malformed error", err)
 //	}
-//}
+// }
 
 // Issue 48861: ChunkedReader should report incomplete chunks
-//func TestIncompleteChunk(t *testing.T) {
+// func TestIncompleteChunk(t *testing.T) {
 //	const valid = "4\r\nabcd\r\n" + "5\r\nabc\r\n\r\n" + "0\r\n"
 //
 //	for i := 0; i < len(valid); i++ {
@@ -223,7 +223,7 @@ func TestChunkReadingIgnoresExtensions(t *testing.T) {
 //	if _ := mylog.Check2(io.ReadAll(r)); err != nil {
 //		t.Errorf("unexpected error for %q: %v", valid, err)
 //	}
-//}
+// }
 
 func TestChunkEndReadError(t *testing.T) {
 	readErr := fmt.Errorf("chunk end read error")
@@ -234,7 +234,7 @@ func TestChunkEndReadError(t *testing.T) {
 	}
 }
 
-//func TestChunkReaderTooMuchOverhead(t *testing.T) {
+// func TestChunkReaderTooMuchOverhead(t *testing.T) {
 //	// If the sender is sending 100x as many chunk header bytes as chunk data,
 //	// we should reject the stream at some point.
 //	chunk := []byte("1;")
@@ -249,11 +249,11 @@ func TestChunkEndReadError(t *testing.T) {
 //		}
 //		return []byte("0\r\n"), nil
 //	}})
-//	_ := mylog.Check2(io.ReadAll(r))
+//	  mylog.Check2(io.ReadAll(r))
 //	if err == nil {
 //		t.Fatalf("successfully read body with excessive overhead; want error")
 //	}
-//}
+// }
 
 func TestChunkReaderByteAtATime(t *testing.T) {
 	// Sending one byte per chunk should not trip the excess-overhead detection.
