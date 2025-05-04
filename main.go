@@ -102,21 +102,21 @@ func main() {
 		}
 	}
 
-	spRight := ux.NewSplit(ux.Split{
+	spRight := ux.Split{
 		Ratio:  0, // 布局比例，0 表示居中，-1 表示完全靠左，1 表示完全靠右
 		Bar:    10,
 		Axis:   layout.Vertical,
 		First:  requestBodyDecoderTab.Layout,  // top 解码包请求 requestBodyDecoder
 		Second: responseBodyDecoderTab.Layout, // bottom 解码包响应 responseBodyDecoder
-	})
+	}
 
-	sp := ux.NewSplit(ux.Split{
+	sp := &ux.Split{
 		Ratio:  0.3, // 布局比例，0 表示居中，-1 表示完全靠左，1 表示完全靠右
 		Bar:    10,
 		Axis:   layout.Horizontal,
 		First:  NewTable().Layout, // left 表格
 		Second: spRight.Layout,    // right row 包解码
-	})
+	}
 
 	panel.AddChild(sp)
 	ux.Run(panel)
