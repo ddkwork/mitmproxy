@@ -6,8 +6,8 @@ require (
 	gioui.org v0.8.1-0.20250424183133-e18db649912a
 	github.com/Dreamacro/clash v1.18.0
 	github.com/bogdanfinn/utls v1.6.5
-	github.com/ddkwork/golibrary v0.0.0-20250503150424-581d702b3813
-	github.com/ddkwork/ux v0.0.0-20250503141751-9e77bedad3e7
+	github.com/ddkwork/golibrary v0.0.0-20250504055225-c75618cc36e5
+	github.com/ddkwork/ux v0.0.0-20250504060654-533760114c50
 	github.com/ddkwork/websocket v0.0.0-20240601052833-daa7b9f82130
 	github.com/duo/gommtls v0.0.0-20231106002643-d82b1a1ef921
 	github.com/elazarl/goproxy v1.7.2
