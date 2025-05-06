@@ -3,11 +3,11 @@ module github.com/ddkwork/mitmproxy
 go 1.24.1
 
 require (
-	gioui.org v0.8.1-0.20250424183133-e18db649912a
+	gioui.org v0.8.1-0.20250505174639-f73287be870d
 	github.com/Dreamacro/clash v1.18.0
 	github.com/bogdanfinn/utls v1.6.5
-	github.com/ddkwork/golibrary v0.0.0-20250504055225-c75618cc36e5
-	github.com/ddkwork/ux v0.0.0-20250504104324-bfda9ba6df12
+	github.com/ddkwork/golibrary v0.1.2-0.20250505042507-fb65953b7361
+	github.com/ddkwork/ux v0.0.0-20250506013917-14700c8ac6d8
 	github.com/ddkwork/websocket v0.0.0-20240601052833-daa7b9f82130
 	github.com/duo/gommtls v0.0.0-20231106002643-d82b1a1ef921
 	github.com/elazarl/goproxy v1.7.2
@@ -18,9 +18,9 @@ require (
 	github.com/onsi/gomega v1.27.6
 	github.com/quic-go/quic-go v0.51.0
 	github.com/sirupsen/logrus v1.9.3
-	golang.org/x/crypto v0.37.0
-	golang.org/x/net v0.39.0
-	golang.org/x/text v0.24.0
+	golang.org/x/crypto v0.38.0
+	golang.org/x/net v0.40.0
+	golang.org/x/text v0.25.0
 )
 
 require (
@@ -47,13 +47,13 @@ require (
 	github.com/quic-go/qpack v0.5.1 // indirect
 	github.com/rogpeppe/go-internal v1.12.0 // indirect
 	go.uber.org/mock v0.5.0 // indirect
-	golang.org/x/exp v0.0.0-20250305212735-054e65f0b394 // indirect
+	golang.org/x/exp v0.0.0-20250408133849-7e4ce0ab07d0 // indirect
 	golang.org/x/exp/shiny v0.0.0-20250408133849-7e4ce0ab07d0 // indirect
-	golang.org/x/image v0.25.0 // indirect
+	golang.org/x/image v0.26.0 // indirect
 	golang.org/x/mod v0.24.0 // indirect
-	golang.org/x/sync v0.13.0 // indirect
-	golang.org/x/sys v0.32.0 // indirect
-	golang.org/x/tools v0.31.0 // indirect
+	golang.org/x/sync v0.14.0 // indirect
+	golang.org/x/sys v0.33.0 // indirect
+	golang.org/x/tools v0.33.0 // indirect
 	gopkg.in/check.v1 v1.0.0-20201130134442-10cb98267c6c // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
