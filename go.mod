@@ -7,7 +7,7 @@ require (
 	github.com/Dreamacro/clash v1.18.0
 	github.com/bogdanfinn/utls v1.6.5
 	github.com/ddkwork/golibrary v0.1.2-0.20250505042507-fb65953b7361
-	github.com/ddkwork/ux v0.0.0-20250506013917-14700c8ac6d8
+	github.com/ddkwork/ux v0.0.0-20250506101838-502688e1a931
 	github.com/ddkwork/websocket v0.0.0-20240601052833-daa7b9f82130
 	github.com/duo/gommtls v0.0.0-20231106002643-d82b1a1ef921
 	github.com/elazarl/goproxy v1.7.2
