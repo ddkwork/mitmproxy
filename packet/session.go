@@ -167,15 +167,16 @@ func MakeHttpResponsePacket(response *http.Response, layer httpClient.SchemerTyp
 	bodyBuffer := new(bytes.Buffer)
 	defer func() {
 		// mylog.hexDump("ResponseBuffer", bodyBuffer.Payload())
+		request := response.Request
 		P = Packet{
 			StreamDirection: Outbound,
 			EditData: EditData{
 				SchemerType:   layer, // todo fill it request.URL.Layer,
-				Method:        "",
-				Host:          "",
-				Path:          "",
-				ContentType:   "",
-				ContentLength: 0,
+				Method:        request.Method,
+				Host:          request.URL.Host,
+				Path:          request.URL.Path,
+				ContentType:   response.Header.Get("Content-Type"),
+				ContentLength: int(response.ContentLength),
 				Status:        response.Status,
 				Note:          "",
 				Process:       "",
@@ -198,10 +199,10 @@ func MakeHttpResponsePacket(response *http.Response, layer httpClient.SchemerTyp
 			WebsocketMessageType: 0,
 			WebsocketStatus:      "",
 		}
-		Text := decodeText(response.Request, bodyBuffer.Bytes())             // todo 解码返回body
-		Json := decodeJson(response.Request, bodyBuffer.Bytes())             // todo 解码返回body
-		Html := decodeHtml(response.Request, bodyBuffer.Bytes())             // todo 解码返回body
-		Javascript := decodeJavaScript(response.Request, bodyBuffer.Bytes()) // todo 解码返回body
+		Text := decodeText(request, bodyBuffer.Bytes())             // todo 解码返回body
+		Json := decodeJson(request, bodyBuffer.Bytes())             // todo 解码返回body
+		Html := decodeHtml(request, bodyBuffer.Bytes())             // todo 解码返回body
+		Javascript := decodeJavaScript(request, bodyBuffer.Bytes()) // todo 解码返回body
 		P.RespBodyDecoder.HttpDump += "\n"
 		switch {
 		case Text != "":

@@ -127,12 +127,14 @@ func (w *WebSocket) copy(dst, src *websocket.Conn, direction packet.StreamDirect
 			m := websocket.FormatCloseMessage(websocket.CloseNormalClosure, fmt.Sprintf("%v", err2))
 			var e *websocket.CloseError
 			if errors.As(e, &err2) {
-				if e.Code == websocket.CloseAbnormalClosure || e.Code == websocket.CloseTLSHandshake {
-					errChan <- e
-					return
-				}
-				if e.Code != websocket.CloseNoStatusReceived {
-					m = websocket.FormatCloseMessage(e.Code, e.Text)
+				if e != nil {
+					if e.Code == websocket.CloseAbnormalClosure || e.Code == websocket.CloseTLSHandshake {
+						errChan <- e
+						return
+					}
+					if e.Code != websocket.CloseNoStatusReceived {
+						m = websocket.FormatCloseMessage(e.Code, e.Text)
+					}
 				}
 			}
 			errChan <- e

@@ -128,18 +128,18 @@ func (h *Http) ServeTls() {
 	defer func() { mylog.Check(h.ClientConn.Close()) }() // todo  use of closed network connection ,连接是在监听结束一次后才关闭的，这里的上一层才有关闭操作啊，why？
 	h.Response = packet.NewResponse(http.StatusOK, nil, h.Request)
 
-	h.Packet.EditData = packet.EditData{ // todo
-		SchemerType:   h.Session.SchemerType,
-		Method:        h.Request.Method,
-		Host:          h.Request.URL.Host,
-		Path:          h.Request.URL.Path,
-		ContentType:   "",
-		ContentLength: 0,
-		Status:        "",
-		Note:          "",
-		Process:       "",
-		PadTime:       0,
-	}
+	// h.Packet.EditData = packet.EditData{ // todo
+	// 	SchemerType:   h.Session.SchemerType,
+	// 	Method:        h.Request.Method,
+	// 	Host:          h.Request.URL.Host,
+	// 	Path:          h.Request.URL.Path,
+	// 	ContentType:   "",
+	// 	ContentLength: 0,
+	// 	Status:        "",
+	// 	Note:          "",
+	// 	Process:       "",
+	// 	PadTime:       0,
+	// }
 
 	packet.WriteResponse(h.Response, h.ReadWriter)
 	mylog.Check(h.Response.Body.Close())

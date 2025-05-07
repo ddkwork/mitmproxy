@@ -196,6 +196,7 @@ func NewTable() ux.Widget {
 					// t.SizeColumnsToFit( )
 					// t.ScrollRowIntoView(t.Root.LastChild())
 					// }, 20*time.Millisecond)
+					t.SyncToModel()
 				}
 				mitmproxy.New("", func(session *packet.Session) {
 					RequestURI := session.Request.RequestURI
@@ -211,7 +212,7 @@ func NewTable() ux.Widget {
 						// 总的老说就是，入栈成功，出栈也成功，则在出栈的时候发送事件，表现为请求成功，返回200
 						// 总的老说就是，入栈失败，出栈一定失败，则在出栈的时候填充入栈信息并发送事件，具体表现为：请求失败
 						if session.StreamDirection == packet.Outbound {
-							mylog.Response(session.Response, false)
+							// mylog.Response(session.Response, false)
 							CreatItem(session)
 							// //tableView.ScrollDimToContentEnd(mat32.Y)
 							return
@@ -219,7 +220,7 @@ func NewTable() ux.Widget {
 						mylog.Request(session.Request, false)
 					case httpClient.HttpsType:
 						if session.StreamDirection == packet.Outbound {
-							mylog.Response(session.Response, false)
+							// mylog.Response(session.Response, false)
 							CreatItem(session)
 
 							// tableView.ScrollDimToContentEnd(mat32.Y)
