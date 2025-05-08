@@ -6,6 +6,7 @@ import (
 	"iter"
 	"net/http"
 	"strings"
+	"time"
 
 	"gioui.org/layout"
 	"github.com/ddkwork/golibrary/mylog"
@@ -151,8 +152,8 @@ func NewTable() ux.Widget {
 				return ""
 			})
 		},
-		UnmarshalRowCells: func(n *ux.Node[packet.EditData], rows []ux.CellData) {
-			n.Data = ux.UnmarshalRow[packet.EditData](rows, func(key, value string) (field any) {
+		UnmarshalRowCells: func(n *ux.Node[packet.EditData], rows []ux.CellData) packet.EditData {
+			return ux.UnmarshalRow[packet.EditData](rows, func(key, value string) (field any) {
 				// mylog.Struct(values)
 				// n.Data.SchemerType = httpClient.WebsocketTlsType.AssertBy(values[0]) // todo
 				return nil
@@ -189,14 +190,14 @@ func NewTable() ux.Widget {
 		SetRootRowsCallBack: func() {
 			go func() {
 				CreatItem := func(session *packet.Session) {
-					// mylog.Struct(session.Packet.EditData)
-					// ux.InvokeTaskAfter(func() {
-					t.Root.AddChildByData(session.Packet.EditData)
-					// t.SyncToModel()
-					// t.SizeColumnsToFit( )
-					// t.ScrollRowIntoView(t.Root.LastChild())
-					// }, 20*time.Millisecond)
-					t.SyncToModel()
+					go func() {
+						time.Sleep(20 * time.Millisecond)
+						// mylog.Struct(session.Packet.EditData)
+						// ux.InvokeTaskAfter(func() {
+						t.Root.AddChildByData(session.Packet.EditData)
+						// t.ScrollRowIntoView(t.Root.LastChild())
+						// }, 20*time.Millisecond)
+					}()
 				}
 				mitmproxy.New("", func(session *packet.Session) {
 					RequestURI := session.Request.RequestURI

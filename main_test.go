@@ -68,7 +68,7 @@ func TestName(t *testing.T) {
 				return ""
 			})
 		},
-		UnmarshalRowCells: func(n *ux.Node[packet.EditData], rows []ux.CellData) {
+		UnmarshalRowCells: func(n *ux.Node[packet.EditData], rows []ux.CellData) packet.EditData {
 			// mylog.Struct(values)
 			// n.Data.SchemerType = httpClient.WebsocketTlsType.AssertBy(values[0]) // todo bug
 			// n.Data.Method = values[1]
@@ -80,7 +80,7 @@ func TestName(t *testing.T) {
 			// n.Data.Note = values[7]
 			// n.Data.Process = values[8]
 			// n.Data.PadTime = mylog.Check2(time.ParseDuration(values[9]))
-			n.Data = ux.UnmarshalRow[packet.EditData](rows, func(key, value string) (field any) {
+			return ux.UnmarshalRow[packet.EditData](rows, func(key, value string) (field any) {
 				return nil
 			})
 		},
