@@ -35,8 +35,8 @@ github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc h1:U9qPSI2PIWSS1
 github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/ddkwork/golibrary v0.1.2-0.20250507062101-31099ee7792e h1:NNeo8FB0ZBoyQfTYGsSzXQDc5VstB6B0aWjxrUfLXnU=
 github.com/ddkwork/golibrary v0.1.2-0.20250507062101-31099ee7792e/go.mod h1:JkTN5ZkZYptsfII6orURXexoJILmpfgXPT9dEWEEQjQ=
-github.com/ddkwork/ux v0.0.0-20250510172657-35b446f4eede h1:ZW7rAfAnBcdvG5Dxz/eooYRHpu0+bmggmDouFWe+SB0=
-github.com/ddkwork/ux v0.0.0-20250510172657-35b446f4eede/go.mod h1:Rhu78GHerl6G5ZkubKbq2IZGh/Fh7uUZN0x9veK4QBY=
+github.com/ddkwork/ux v0.0.0-20250510175635-543f5e815cf5 h1:TkFcGvUaukZoLUxX1x1W2vKcfyMuKi8o8uUO92bzf4s=
+github.com/ddkwork/ux v0.0.0-20250510175635-543f5e815cf5/go.mod h1:6eVZ5RiJonVSoVxFHSSL0H3b983gwiAv+SwiQ8v1vwo=
 github.com/ddkwork/websocket v0.0.0-20240601052833-daa7b9f82130 h1:Wcl8L8sgXHlvBMzG40Ir6R8omUet+zHjIakeWTjIWro=
 github.com/ddkwork/websocket v0.0.0-20240601052833-daa7b9f82130/go.mod h1:un1lqMdgNNAKsg0FpOAUjPZu4ZyY8lTMLXhyLuF0NZw=
 github.com/dlclark/regexp2 v1.11.5 h1:Q/sSnsKerHeCkc/jSTNq1oCm7KiVgUMZRDUoRu0JQZQ=
@@ -53,8 +53,8 @@ github.com/go-text/typesetting v0.3.0 h1:OWCgYpp8njoxSRpwrdd1bQOxdjOXDj9Rqart9ML
 github.com/go-text/typesetting v0.3.0/go.mod h1:qjZLkhRgOEYMhU9eHBr3AR4sfnGJvOXNLt8yRAySFuY=
 github.com/go-text/typesetting-utils v0.0.0-20241103174707-87a29e9e6066 h1:qCuYC+94v2xrb1PoS4NIDe7DGYtLnU2wWiQe9a1B1c0=
 github.com/go-text/typesetting-utils v0.0.0-20241103174707-87a29e9e6066/go.mod h1:DDxDdQEnB70R8owOx3LVpEFvpMK9eeH1o2r0yZhFI9o=
-github.com/godbus/dbus/v5 v5.0.6 h1:mkgN1ofwASrYnJ5W6U/BxG15eXXXjirgZc7CLqkcaro=
-github.com/godbus/dbus/v5 v5.0.6/go.mod h1:xhWf0FNVPg57R7Z0UbKHbJfkEywrmjJnf7w5xrFpKfA=
+github.com/godbus/dbus/v5 v5.1.0 h1:4KLkAxT3aOY8Li4FRJe/KvhoNFFxo0m6fNuFUO8QJUk=
+github.com/godbus/dbus/v5 v5.1.0/go.mod h1:xhWf0FNVPg57R7Z0UbKHbJfkEywrmjJnf7w5xrFpKfA=
 github.com/golang/protobuf v1.5.3 h1:KhyjKVUg7Usr/dYsdSqoFveMYd5ko72D+zANwlG1mmg=
 github.com/golang/protobuf v1.5.3/go.mod h1:XVQd3VNwM+JqD3oG2Ue2ip4fOMUkwXdXDdiuN0vRsmY=
 github.com/google/go-cmp v0.7.0 h1:wk8382ETsv4JYUZwIsn6YpYiWiBsYLSJiTsyBybVuN8=

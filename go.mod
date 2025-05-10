@@ -7,7 +7,7 @@ require (
 	github.com/Dreamacro/clash v1.18.0
 	github.com/bogdanfinn/utls v1.6.5
 	github.com/ddkwork/golibrary v0.1.2-0.20250507062101-31099ee7792e
-	github.com/ddkwork/ux v0.0.0-20250510172657-35b446f4eede
+	github.com/ddkwork/ux v0.0.0-20250510175635-543f5e815cf5
 	github.com/ddkwork/websocket v0.0.0-20240601052833-daa7b9f82130
 	github.com/duo/gommtls v0.0.0-20231106002643-d82b1a1ef921
 	github.com/elazarl/goproxy v1.7.2
@@ -36,7 +36,7 @@ require (
 	github.com/go-logr/logr v1.2.4 // indirect
 	github.com/go-task/slim-sprig v0.0.0-20230315185526-52ccab3ef572 // indirect
 	github.com/go-text/typesetting v0.3.0 // indirect
-	github.com/godbus/dbus/v5 v5.0.6 // indirect
+	github.com/godbus/dbus/v5 v5.1.0 // indirect
 	github.com/google/go-cmp v0.7.0 // indirect
 	github.com/google/pprof v0.0.0-20210407192527-94a9f03dee38 // indirect
 	github.com/josharian/native v1.1.0 // indirect
