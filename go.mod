@@ -6,8 +6,8 @@ require (
 	gioui.org v0.8.1-0.20250505174639-f73287be870d
 	github.com/Dreamacro/clash v1.18.0
 	github.com/bogdanfinn/utls v1.6.5
-	github.com/ddkwork/golibrary v0.1.2-0.20250505042507-fb65953b7361
-	github.com/ddkwork/ux v0.0.0-20250506101838-502688e1a931
+	github.com/ddkwork/golibrary v0.1.2-0.20250507062101-31099ee7792e
+	github.com/ddkwork/ux v0.0.0-20250510172657-35b446f4eede
 	github.com/ddkwork/websocket v0.0.0-20240601052833-daa7b9f82130
 	github.com/duo/gommtls v0.0.0-20231106002643-d82b1a1ef921
 	github.com/elazarl/goproxy v1.7.2
@@ -26,6 +26,7 @@ require (
 require (
 	gioui.org/shader v1.0.8 // indirect
 	gioui.org/x v0.8.2-0.20250115181849-c005f2ad1592 // indirect
+	git.wow.st/gmp/jni v0.0.0-20210610011705-34026c7e22d0 // indirect
 	github.com/Dreamacro/protobytes v0.0.0-20230617041236-6500a9f4f158 // indirect
 	github.com/alecthomas/chroma/v2 v2.17.2 // indirect
 	github.com/andybalholm/brotli v1.1.1 // indirect
@@ -35,6 +36,7 @@ require (
 	github.com/go-logr/logr v1.2.4 // indirect
 	github.com/go-task/slim-sprig v0.0.0-20230315185526-52ccab3ef572 // indirect
 	github.com/go-text/typesetting v0.3.0 // indirect
+	github.com/godbus/dbus/v5 v5.0.6 // indirect
 	github.com/google/go-cmp v0.7.0 // indirect
 	github.com/google/pprof v0.0.0-20210407192527-94a9f03dee38 // indirect
 	github.com/josharian/native v1.1.0 // indirect
@@ -42,7 +44,7 @@ require (
 	github.com/kr/pretty v0.3.1 // indirect
 	github.com/mdlayher/netlink v1.7.2 // indirect
 	github.com/mdlayher/socket v0.4.1 // indirect
-	github.com/oligo/gvcode v0.2.1-0.20250424030509-8138ffc92f73 // indirect
+	github.com/oligo/gvcode v0.2.2 // indirect
 	github.com/pmezard/go-difflib v1.0.1-0.20181226105442-5d4384ee4fb2 // indirect
 	github.com/quic-go/qpack v0.5.1 // indirect
 	github.com/rogpeppe/go-internal v1.12.0 // indirect
