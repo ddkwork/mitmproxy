@@ -18,12 +18,9 @@ import (
 )
 
 func main() {
-	w := ux.NewWindow("mitmproxy")
-	panel := ux.NewPanel(w)
-
-	hPanel := ux.NewHPanel(w)
+	panel := ux.NewPanel()
+	hPanel := ux.NewHPanel()
 	panel.AddChild(hPanel)
-
 	m := stream.ReadEmbedFileMap(myIcons, "asserts/bar")
 	appBar = ux.InitAppBar(hPanel, func(yield func(*ux.TipIconButton) bool) {
 		yield(ux.NewTooltipButton(m.GetMust("search.png"), "search", nil))
@@ -120,7 +117,7 @@ func main() {
 	}
 
 	panel.AddChild(sp)
-	ux.Run(panel)
+	ux.Run("mitmproxy", panel)
 }
 
 //go:embed asserts/bar

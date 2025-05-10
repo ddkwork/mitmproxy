@@ -36,7 +36,7 @@ func TestGenBody(t *testing.T) {
 
 func TestName(t *testing.T) {
 	table := ux.NewTreeTable(packet.EditData{})
-	defer ux.RunTest("github.com/ddkwork/mitmproxy", table)
+	defer ux.Run("mitmproxy", table)
 	table.TableContext = ux.TableContext[packet.EditData]{
 		CustomContextMenuItems: func(gtx layout.Context, n *ux.Node[packet.EditData]) iter.Seq[ux.ContextMenuItem] {
 			return func(yield func(ux.ContextMenuItem) bool) {
