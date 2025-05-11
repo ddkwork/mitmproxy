@@ -23,15 +23,15 @@ import (
 // bytes (2^(8*20)-1).
 var MaxSerialNumber = big.NewInt(0).SetBytes(bytes.Repeat([]byte{255}, 20))
 
-type CAOptions struct {
+type Option struct {
 	Name         string
 	Organization string
 	Validity     time.Duration
 }
 
 // NewCA creates a new Certificate and associated private key.
-func NewCA(optFns ...func(*CAOptions)) (*x509.Certificate, *rsa.PrivateKey) {
-	options := CAOptions{
+func NewCA(optFns ...func(*Option)) (*x509.Certificate, *rsa.PrivateKey) {
+	options := Option{
 		Name:         "github.com/ddkwork/mitmproxy ca",
 		Organization: "github.com/ddkwork/mitmproxy",
 		Validity:     24 * time.Hour,
@@ -39,11 +39,10 @@ func NewCA(optFns ...func(*CAOptions)) (*x509.Certificate, *rsa.PrivateKey) {
 	for _, fn := range optFns {
 		fn(&options)
 	}
-	priv := mylog.Check2(rsa.GenerateKey(rand.Reader, 2048))
-	pub := priv.Public()
-	serial := mylog.Check2(rand.Int(rand.Reader, MaxSerialNumber))
+	privateKey := mylog.Check2(rsa.GenerateKey(rand.Reader, 2048))
+	publicKey := privateKey.Public()
 	tmpl := &x509.Certificate{
-		SerialNumber: serial,
+		SerialNumber: mylog.Check2(rand.Int(rand.Reader, MaxSerialNumber)),
 		Subject: pkix.Name{
 			CommonName:   options.Name,
 			Organization: []string{options.Organization},
@@ -56,10 +55,9 @@ func NewCA(optFns ...func(*CAOptions)) (*x509.Certificate, *rsa.PrivateKey) {
 		DNSNames:              []string{options.Name},
 		IsCA:                  true,
 	}
-	raw := mylog.Check2(x509.CreateCertificate(rand.Reader, tmpl, tmpl, pub, priv))
+	raw := mylog.Check2(x509.CreateCertificate(rand.Reader, tmpl, tmpl, publicKey, privateKey))
 	// Parse certificate bytes so that we have a leaf certificate.
-	x509c := mylog.Check2(x509.ParseCertificate(raw))
-	return x509c, priv
+	return mylog.Check2(x509.ParseCertificate(raw)), privateKey
 }
 
 func LoadCA(certFile, keyFile string) (*x509.Certificate, crypto.PrivateKey, bool) {
@@ -71,7 +69,7 @@ func LoadCA(certFile, keyFile string) (*x509.Certificate, crypto.PrivateKey, boo
 	return cert, keyPair.PrivateKey, true
 }
 
-func LoadOrCreateCA(certFile, keyFile string, optFns ...func(*CAOptions)) (cert *x509.Certificate, privateKey crypto.PrivateKey) {
+func LoadOrCreateCA(certFile, keyFile string, optFns ...func(*Option)) (cert *x509.Certificate, privateKey crypto.PrivateKey) {
 	ok := false
 	cert, privateKey, ok = LoadCA(certFile, keyFile)
 	if !ok {

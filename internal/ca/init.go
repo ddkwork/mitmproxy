@@ -28,7 +28,7 @@ func init() {
 	KeyFile = filepath.Join(homeDir, "ca.key")
 
 	mylog.Call(func() {
-		cert, key := LoadOrCreateCA(CertFile, KeyFile, func(c *CAOptions) {
+		cert, key := LoadOrCreateCA(CertFile, KeyFile, func(c *Option) {
 			c.Validity = 365 * 24 * time.Hour
 		})
 		Cfg = NewConfig(func(m *Options) {
