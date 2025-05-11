@@ -100,19 +100,19 @@ func NewMitmConfig(optFns ...func(*Options)) *MitmConfig {
 	roots := x509.NewCertPool()
 	roots.AddCert(options.Certificate)
 	// Generating the private key that will be used for domain certificates
-	priv := makeSigner(options.PrivateKey)
-	pub := priv.Public()
+	signer := makeSigner(options.PrivateKey)
+	publicKey := signer.Public()
 	// Subject Label Identifier support for end entity certificate.
 	// https://tools.ietf.org/html/rfc3280#section-4.2.1.2
-	PKIXPublicKey := mylog.Check2(x509.MarshalPKIXPublicKey(pub))
+	PkixPublicKey := mylog.Check2(x509.MarshalPKIXPublicKey(publicKey))
 	// nolint: gosec // ok
 	h := sha1.New()
-	mylog.Check2(h.Write(PKIXPublicKey))
+	mylog.Check2(h.Write(PkixPublicKey))
 	keyID := h.Sum(nil)
 	return &MitmConfig{
 		ca:              options.Certificate,
 		caPrivateKey:    options.PrivateKey,
-		privateKey:      priv,
+		privateKey:      signer,
 		keyID:           keyID,
 		validity:        options.Validity,
 		organization:    options.Organization,
