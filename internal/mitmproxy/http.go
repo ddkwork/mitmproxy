@@ -166,7 +166,7 @@ func (h *Http) ServeTls() {
 	layer := layers.TLSType(b[0])
 	if layer == layers.TLSHandshake {
 		mylog.Hex(h.Request.URL.String(), layer)
-		tlsConn := tls.Server(peekConn, ca.MitmCfg.NewTlsConfigForHost(h.Request.URL.Host))
+		tlsConn := tls.Server(peekConn, ca.Cfg.NewTlsConfigForHost(h.Request.URL.Host))
 		mylog.Check(tlsConn.Handshake())
 		mylog.Success("https Handshake Success", h.Request.Method, " ", h.Request.URL.String())
 		h.Session = packet.NewSession(tlsConn, httpClient.HttpsType, h.EventCallBack)

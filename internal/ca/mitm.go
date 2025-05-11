@@ -35,7 +35,7 @@ type Options struct {
 	Organization string
 	// Validity of the generated certificates
 	Validity time.Duration
-	// NewMitmConfig structure is used to configure the TLS server.
+	// NewConfig structure is used to configure the TLS server.
 	TLSServerConfig *tls.Config
 	// Storage for generated certificates
 	CertTemplateGen CertTemplateGenFunc
@@ -43,9 +43,9 @@ type Options struct {
 	// If nil, logging is done via the log package's standard logger.
 }
 
-// MitmConfig is a set of configuration values that are used to build TLS configs
+// Config is a set of configuration values that are used to build TLS configs
 // capable of MITM.
-type MitmConfig struct {
+type Config struct {
 	ca           *x509.Certificate // Root certificate authority
 	caPrivateKey crypto.PrivateKey // CA private key
 	// roots is a CertPool that contains the root CA GetOrCreateCert
@@ -60,7 +60,7 @@ type MitmConfig struct {
 	certTemplateGen CertTemplateGenFunc
 }
 
-func NewMitmConfig(optFns ...func(*Options)) *MitmConfig {
+func NewConfig(optFns ...func(*Options)) *Config {
 	options := Options{
 		Organization:    "github.com/ddkwork/mitmproxy",
 		Validity:        time.Hour,
@@ -70,9 +70,9 @@ func NewMitmConfig(optFns ...func(*Options)) *MitmConfig {
 		fn(&options)
 	}
 	if options.Certificate == nil || options.PrivateKey == nil {
-		ca, privKey := NewCA()
+		ca, privateKey := NewCA()
 		options.Certificate = ca
-		options.PrivateKey = privKey
+		options.PrivateKey = privateKey
 	}
 	if options.CertTemplateGen == nil {
 		options.CertTemplateGen = func(serial *big.Int, ski []byte, hostname, organization string, validity time.Duration) *x509.Certificate {
@@ -108,7 +108,7 @@ func NewMitmConfig(optFns ...func(*Options)) *MitmConfig {
 	// nolint: gosec // ok
 	h := sha1.New()
 	mylog.Check2(h.Write(PkixPublicKey))
-	return &MitmConfig{
+	return &Config{
 		ca:              options.Certificate,
 		caPrivateKey:    options.PrivateKey,
 		privateKey:      signer,
@@ -122,12 +122,12 @@ func NewMitmConfig(optFns ...func(*Options)) *MitmConfig {
 }
 
 // CA returns the authority cert
-func (c *MitmConfig) CA() *x509.Certificate { return c.ca }
+func (c *Config) CA() *x509.Certificate { return c.ca }
 
 // NewTlsConfigForHost creates a *tls.Config that will generate
 // domain certificates on-the-fly using the SNI extension (if specified)
 // or the hostname
-func (c *MitmConfig) NewTlsConfigForHost(hostname string) *tls.Config {
+func (c *Config) NewTlsConfigForHost(hostname string) *tls.Config {
 	if c.tlsServerConfig == nil {
 		return nil
 	}
@@ -144,7 +144,7 @@ func (c *MitmConfig) NewTlsConfigForHost(hostname string) *tls.Config {
 }
 
 // GetOrCreateCert gets or creates a certificate for the specified hostname
-func (c *MitmConfig) GetOrCreateCert(hostname string) (*tls.Certificate, error) {
+func (c *Config) GetOrCreateCert(hostname string) (*tls.Certificate, error) {
 	// Remove the port if it exists.
 	host, _, e := net.SplitHostPort(hostname)
 	if e == nil {

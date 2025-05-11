@@ -71,20 +71,20 @@ func LoadCA(certFile, keyFile string) (*x509.Certificate, crypto.PrivateKey, boo
 	return cert, keyPair.PrivateKey, true
 }
 
-func LoadOrCreateCA(certFile, keyFile string, optFns ...func(*CAOptions)) (cert *x509.Certificate, key crypto.PrivateKey) {
+func LoadOrCreateCA(certFile, keyFile string, optFns ...func(*CAOptions)) (cert *x509.Certificate, privateKey crypto.PrivateKey) {
 	ok := false
-	cert, key, ok = LoadCA(certFile, keyFile)
+	cert, privateKey, ok = LoadCA(certFile, keyFile)
 	if !ok {
-		cert, key = NewCA(optFns...)
+		cert, privateKey = NewCA(optFns...)
 	}
 	certOut := mylog.Check2(os.Create(certFile))
 	defer func() { mylog.Check(certOut.Close()) }()
 	keyOut := mylog.Check2(os.OpenFile(keyFile, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0o600))
 	defer func() { mylog.Check(keyOut.Close()) }()
 	mylog.Check(pem.Encode(certOut, &pem.Block{Type: "CERTIFICATE", Bytes: cert.Raw}))
-	keyBytes := mylog.Check2(x509.MarshalPKCS8PrivateKey(key))
+	keyBytes := mylog.Check2(x509.MarshalPKCS8PrivateKey(privateKey))
 	mylog.Check(pem.Encode(keyOut, &pem.Block{Type: "PRIVATE KEY", Bytes: keyBytes}))
-	return cert, key
+	return cert, privateKey
 }
 
 type certHandler struct{ cert []byte }

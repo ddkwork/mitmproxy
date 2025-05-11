@@ -14,7 +14,7 @@ import (
 )
 
 var (
-	MitmCfg        *MitmConfig
+	Cfg            *Config
 	ProxyPort      = "7890"
 	FileServerPort = "7777"
 	CertFile       = ""
@@ -31,7 +31,7 @@ func init() {
 		cert, key := LoadOrCreateCA(CertFile, KeyFile, func(c *CAOptions) {
 			c.Validity = 365 * 24 * time.Hour
 		})
-		MitmCfg = NewMitmConfig(func(m *Options) {
+		Cfg = NewConfig(func(m *Options) {
 			m.Certificate = cert
 			m.PrivateKey = key
 		})

@@ -14,7 +14,7 @@ import (
 )
 
 func TestMITM(t *testing.T) {
-	c := ca.NewMitmConfig(func(m *ca.Options) {
+	c := ca.NewConfig(func(m *ca.Options) {
 		m.Validity = 20 * time.Hour
 		m.Organization = "Test Organization"
 	})
