@@ -23,7 +23,7 @@ var DefaultTLSServerConfig = &tls.Config{
 	NextProtos: []string{"http/1.1"},
 	// Accept client certs without verifying them
 	// Note that we will still verify remote server certs
-	InsecureSkipVerify: true, //nolint: gosec // ok
+	InsecureSkipVerify: true, // nolint: gosec // ok
 }
 
 type CertTemplateGenFunc func(serial *big.Int, ski []byte, hostname, organization string, validity time.Duration) *x509.Certificate
@@ -100,7 +100,7 @@ func NewMitmConfig(optFns ...func(*Options)) *MitmConfig {
 	roots := x509.NewCertPool()
 	roots.AddCert(options.Certificate)
 	// Generating the private key that will be used for domain certificates
-	priv := generateKey(options.PrivateKey)
+	priv := makeSigner(options.PrivateKey)
 	pub := priv.Public()
 	// Subject Label Identifier support for end entity certificate.
 	// https://tools.ietf.org/html/rfc3280#section-4.2.1.2
@@ -132,6 +132,7 @@ func (c *MitmConfig) NewTlsConfigForHost(hostname string) *tls.Config {
 	if c.tlsServerConfig == nil {
 		return nil
 	}
+	// deepcopy.Clone(c.tlsServerConfig) // todo test
 	tlsConfig := c.tlsServerConfig.Clone()
 	tlsConfig.GetCertificate = func(clientHello *tls.ClientHelloInfo) (*tls.Certificate, error) {
 		host := clientHello.ServerName
@@ -160,8 +161,7 @@ func (c *MitmConfig) GetOrCreateCert(hostname string) (*tls.Certificate, error) 
 			Roots:   c.roots,
 		}))
 		return tlsCertificate, nil
-
-		mylog.Info("Invalid certificate in the cache for %s", hostname)
+		// mylog.Info("Invalid certificate in the cache for %s", hostname)
 	}
 	mylog.Info("Cache miss for", hostname)
 	serial := mylog.Check2(rand.Int(rand.Reader, MaxSerialNumber))
@@ -178,7 +178,7 @@ func (c *MitmConfig) GetOrCreateCert(hostname string) (*tls.Certificate, error) 
 	return tlsCertificate, nil
 }
 
-func generateKey(privateKey crypto.PrivateKey) crypto.Signer {
+func makeSigner(privateKey crypto.PrivateKey) crypto.Signer {
 	switch privateKey.(type) {
 	case *rsa.PrivateKey:
 		return mylog.Check2(rsa.GenerateKey(rand.Reader, 2048))
