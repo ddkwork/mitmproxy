@@ -108,12 +108,11 @@ func NewMitmConfig(optFns ...func(*Options)) *MitmConfig {
 	// nolint: gosec // ok
 	h := sha1.New()
 	mylog.Check2(h.Write(PkixPublicKey))
-	keyID := h.Sum(nil)
 	return &MitmConfig{
 		ca:              options.Certificate,
 		caPrivateKey:    options.PrivateKey,
 		privateKey:      signer,
-		keyID:           keyID,
+		keyID:           h.Sum(nil),
 		validity:        options.Validity,
 		organization:    options.Organization,
 		tlsServerConfig: options.TLSServerConfig,
