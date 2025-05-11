@@ -97,8 +97,8 @@ func NewMitmConfig(optFns ...func(*Options)) *MitmConfig {
 			return tmpl
 		}
 	}
-	roots := x509.NewCertPool()
-	roots.AddCert(options.Certificate)
+	certPool := x509.NewCertPool()
+	certPool.AddCert(options.Certificate)
 	// Generating the private key that will be used for domain certificates
 	signer := makeSigner(options.PrivateKey)
 	publicKey := signer.Public()
@@ -117,7 +117,7 @@ func NewMitmConfig(optFns ...func(*Options)) *MitmConfig {
 		organization:    options.Organization,
 		tlsServerConfig: options.TLSServerConfig,
 		certTemplateGen: options.CertTemplateGen,
-		roots:           roots,
+		roots:           certPool,
 	}
 }
 
