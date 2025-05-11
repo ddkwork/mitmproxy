@@ -8,12 +8,11 @@ import (
 	"time"
 
 	"github.com/ddkwork/golibrary/assert"
-
 	"github.com/ddkwork/golibrary/mylog"
 	"github.com/ddkwork/mitmproxy/internal/ca"
 )
 
-func TestMITM(t *testing.T) {
+func TestCA(t *testing.T) {
 	c := ca.NewConfig(func(m *ca.Options) {
 		m.Validity = 20 * time.Hour
 		m.Organization = "Test Organization"
