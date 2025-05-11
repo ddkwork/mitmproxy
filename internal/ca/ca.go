@@ -55,9 +55,9 @@ func NewCA(optFns ...func(*Option)) (*x509.Certificate, *rsa.PrivateKey) {
 		DNSNames:              []string{options.Name},
 		IsCA:                  true,
 	}
-	raw := mylog.Check2(x509.CreateCertificate(rand.Reader, tmpl, tmpl, publicKey, privateKey))
+	der := mylog.Check2(x509.CreateCertificate(rand.Reader, tmpl, tmpl, publicKey, privateKey))
 	// Parse certificate bytes so that we have a leaf certificate.
-	return mylog.Check2(x509.ParseCertificate(raw)), privateKey
+	return mylog.Check2(x509.ParseCertificate(der)), privateKey
 }
 
 func LoadCA(certFile, keyFile string) (*x509.Certificate, crypto.PrivateKey, bool) {
