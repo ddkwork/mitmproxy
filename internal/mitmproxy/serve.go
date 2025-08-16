@@ -8,8 +8,8 @@ import (
 	"net"
 	"time"
 
-	"github.com/ddkwork/golibrary/mylog"
-	"github.com/ddkwork/golibrary/stream/net/httpClient"
+	"github.com/ddkwork/golibrary/std/mylog"
+	"github.com/ddkwork/golibrary/std/stream/net/httpClient"
 	"github.com/ddkwork/mitmproxy/internal/ca"
 	"github.com/ddkwork/mitmproxy/packet"
 )
@@ -102,7 +102,7 @@ func (p *Proxy) Serve() {
 				time.Sleep(delay)
 				continue
 			}
-			return
+			// return
 		}
 		delay = 0
 		TcpKeepAlive(clientConn)
@@ -125,6 +125,8 @@ func (p *Proxy) Serve() {
 		isS5 := func(b []byte) bool { return bytes.Contains(b, []byte{5, 1}) }
 		isS4 := func(b []byte) bool { return bytes.Contains(b, []byte{4, 1}) }
 		switch {
+		case bytes.Equal(layerBuf, []byte{0x16, 0x03, 0x01}): // http不设置证书代理https流量，所有协议只需一个监听端口
+			go NewHttp(packet.NewSessionWithReadWriter(clientConn, readWriter, httpClient.HttpsType, p.sessionEventCallBack)).ServeTls()
 		case isS5(layerBuf):
 			go NewSocket5(packet.NewSessionWithReadWriter(clientConn, readWriter, httpClient.Socket5Type, p.sessionEventCallBack)).Serve()
 		case isS4(layerBuf):

@@ -16,7 +16,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ddkwork/golibrary/mylog"
+	"github.com/ddkwork/golibrary/std/mylog"
 )
 
 // drainBody reads all of b to memory and then returns two equivalent

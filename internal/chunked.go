@@ -15,7 +15,7 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/ddkwork/golibrary/mylog"
+	"github.com/ddkwork/golibrary/std/mylog"
 )
 
 const maxLineLength = 4096 // assumed <= bufio.defaultBufSize

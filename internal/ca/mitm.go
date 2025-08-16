@@ -15,7 +15,7 @@ import (
 	"net"
 	"time"
 
-	"github.com/ddkwork/golibrary/mylog"
+	"github.com/ddkwork/golibrary/std/mylog"
 )
 
 var DefaultTLSServerConfig = &tls.Config{
@@ -129,7 +129,7 @@ func (c *Config) CA() *x509.Certificate { return c.ca }
 // or the hostname
 func (c *Config) NewTlsConfigForHost(hostname string) *tls.Config {
 	if c.tlsServerConfig == nil {
-		return nil
+		// c.tlsServerConfig = mylog.Check2( c.GetOrCreateCert(hostname))
 	}
 	// deepcopy.Clone(c.tlsServerConfig) // todo test
 	tlsConfig := c.tlsServerConfig.Clone()
@@ -140,6 +140,13 @@ func (c *Config) NewTlsConfigForHost(hostname string) *tls.Config {
 		}
 		return c.GetOrCreateCert(host)
 	}
+	tlsConfig.GetConfigForClient = func(info *tls.ClientHelloInfo) (*tls.Config, error) {
+		if info.ServerName == "" {
+			info.ServerName = hostname
+		}
+		return nil, nil
+	}
+	mylog.Struct(tlsConfig)
 	return tlsConfig
 }
 
@@ -173,7 +180,7 @@ func (c *Config) GetOrCreateCert(hostname string) (*tls.Certificate, error) {
 		PrivateKey:  c.privateKey,
 		Leaf:        x509c,
 	}
-	CertPool.Set(hostname, tlsCertificate)
+	CertPool.Update(hostname, tlsCertificate)
 	return tlsCertificate, nil
 }
 

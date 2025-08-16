@@ -13,9 +13,9 @@ import (
 
 	"github.com/ddkwork/websocket"
 
-	"github.com/ddkwork/golibrary/mylog"
-	"github.com/ddkwork/golibrary/stream"
-	"github.com/ddkwork/golibrary/stream/net/httpClient"
+	"github.com/ddkwork/golibrary/std/mylog"
+	"github.com/ddkwork/golibrary/std/stream"
+	"github.com/ddkwork/golibrary/std/stream/net/httpClient"
 	"github.com/ddkwork/mitmproxy/internal/ca"
 )
 
@@ -41,7 +41,7 @@ func main() {
 		NetDialContext:    nil,
 		NetDialTLSContext: nil,
 		Proxy:             http.ProxyURL(surl),
-		TLSClientConfig:   ca.Cfg.NewTlsConfigForHost(httpClient.Localhost),
+		TLSClientConfig:   ca.Cfg.NewTlsConfigForHost(ca.ProxyServeAddress()),
 		// TLSClientConfig:   ca.Cfg.NewTlsConfigForHost("localhost"),
 		HandshakeTimeout:  0,
 		ReadBufferSize:    0,

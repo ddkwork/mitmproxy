@@ -6,7 +6,7 @@ import (
 
 	"github.com/ddkwork/mitmproxy/internal/socks"
 
-	"github.com/ddkwork/golibrary/mylog"
+	"github.com/ddkwork/golibrary/std/mylog"
 	"github.com/ddkwork/mitmproxy/packet"
 )
 

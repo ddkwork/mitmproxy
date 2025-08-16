@@ -9,8 +9,8 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/ddkwork/golibrary/mylog"
-	"github.com/ddkwork/golibrary/stream/net/httpClient"
+	"github.com/ddkwork/golibrary/std/mylog"
+	"github.com/ddkwork/golibrary/std/stream/net/httpClient"
 )
 
 type (
@@ -168,6 +168,9 @@ func MakeHttpResponsePacket(response *http.Response, layer httpClient.SchemerTyp
 	defer func() {
 		// mylog.hexDump("ResponseBuffer", bodyBuffer.Payload())
 		request := response.Request
+		if request == nil {
+			return
+		}
 		P = Packet{
 			StreamDirection: Outbound,
 			EditData: EditData{

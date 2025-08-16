@@ -13,7 +13,7 @@ import (
 	"net/textproto"
 	"sync"
 
-	"github.com/ddkwork/golibrary/mylog"
+	"github.com/ddkwork/golibrary/std/mylog"
 )
 
 var (

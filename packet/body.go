@@ -11,8 +11,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/ddkwork/golibrary/mylog"
-	"github.com/ddkwork/golibrary/stream"
+	"github.com/ddkwork/golibrary/std/mylog"
+	"github.com/ddkwork/golibrary/std/stream"
 	"github.com/ddkwork/mitmproxy/internal/ca"
 )
 
@@ -106,7 +106,7 @@ func decodeBodyByContentType(Request *http.Request, Type bodyType, body []byte) 
 
 func DrainBody(b io.ReadCloser) (body, backBody io.ReadCloser) {
 	mylog.CheckNil(b)
-	if b == http.NoBody {
+	if b == http.NoBody || b == nil {
 		return http.NoBody, http.NoBody
 	}
 	var buf bytes.Buffer

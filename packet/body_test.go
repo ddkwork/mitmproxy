@@ -8,9 +8,9 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/ddkwork/golibrary/mylog"
-	"github.com/ddkwork/golibrary/stream"
-	"github.com/ddkwork/golibrary/stream/net/httpClient"
+	"github.com/ddkwork/golibrary/std/mylog"
+	"github.com/ddkwork/golibrary/std/stream"
+	"github.com/ddkwork/golibrary/std/stream/net/httpClient"
 	"github.com/ddkwork/mitmproxy/internal/ca"
 )
 
@@ -41,5 +41,5 @@ func UnitTest() {
 	// www.baidu.com
 	head := map[string]string{"Connection": "upgRade", "Upgrade": "WebSocket"}
 	c := httpClient.New()
-	c.Url("https://www.baidu.com").SetProxy(httpClient.HttpsType, net.JoinHostPort(httpClient.Localhost, ca.ProxyPort)).Body(httpClient.LogeventBuf).Post().SetHead(head).Request()
+	c.Post("https://www.baidu.com").SetProxy(httpClient.HttpsType, net.JoinHostPort(httpClient.Localhost, ca.ProxyPort)).Body(httpClient.LogeventBuf).SetHead(head).Request()
 }

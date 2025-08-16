@@ -24,7 +24,7 @@ import (
 
 	"github.com/ddkwork/mitmproxy/internal/ascii"
 
-	"github.com/ddkwork/golibrary/mylog"
+	"github.com/ddkwork/golibrary/std/mylog"
 
 	"golang.org/x/net/http/httpguts"
 )

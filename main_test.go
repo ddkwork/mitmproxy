@@ -8,10 +8,10 @@ import (
 
 	"gioui.org/layout"
 	"gioui.org/widget"
-	"github.com/ddkwork/golibrary/mylog"
-	"github.com/ddkwork/golibrary/safemap"
-	"github.com/ddkwork/golibrary/stream"
-	"github.com/ddkwork/golibrary/stream/net/httpClient"
+	"github.com/ddkwork/golibrary/std/mylog"
+	"github.com/ddkwork/golibrary/std/safemap"
+	"github.com/ddkwork/golibrary/std/stream"
+	"github.com/ddkwork/golibrary/std/stream/net/httpClient"
 	"github.com/ddkwork/mitmproxy/packet"
 	"github.com/ddkwork/ux"
 )

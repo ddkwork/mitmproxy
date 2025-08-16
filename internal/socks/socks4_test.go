@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/ddkwork/golibrary/assert"
-	"github.com/ddkwork/golibrary/mylog"
+	"github.com/ddkwork/golibrary/std/assert"
+	"github.com/ddkwork/golibrary/std/mylog"
 )
 
 func TestSocks4Connect(t *testing.T) {

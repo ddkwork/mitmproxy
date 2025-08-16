@@ -6,7 +6,7 @@ import (
 
 	"github.com/ddkwork/websocket"
 
-	"github.com/ddkwork/golibrary/stream/net/httpClient"
+	"github.com/ddkwork/golibrary/std/stream/net/httpClient"
 )
 
 type (

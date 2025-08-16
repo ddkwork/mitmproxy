@@ -14,8 +14,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/ddkwork/golibrary/mylog"
-	"github.com/ddkwork/golibrary/stream"
+	"github.com/ddkwork/golibrary/std/mylog"
+	"github.com/ddkwork/golibrary/std/stream"
 )
 
 // MaxSerialNumber is the upper boundary that is used to create unique serial
@@ -23,6 +23,7 @@ import (
 // bytes (2^(8*20)-1).
 var MaxSerialNumber = big.NewInt(0).SetBytes(bytes.Repeat([]byte{255}, 20))
 
+// var MaxSerialNumber = new(big.Int).Lsh(big.NewInt(1), 128)
 type Option struct {
 	Name         string
 	Organization string
@@ -103,3 +104,6 @@ func (h *certHandler) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
 	rw.Header().Set("Content-Type", "application/x-x509-ca-cert")
 	mylog.Check2(rw.Write(h.cert))
 }
+
+// http proxy https todo
+// ServerHandshake()

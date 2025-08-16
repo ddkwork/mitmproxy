@@ -19,7 +19,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/ddkwork/golibrary/mylog"
+	"github.com/ddkwork/golibrary/std/mylog"
 )
 
 type eofReader struct{}

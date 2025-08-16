@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"time"
 
-	"github.com/ddkwork/golibrary/mylog"
+	"github.com/ddkwork/golibrary/std/mylog"
 )
 
 func NewResponse(code int, body io.Reader, req *http.Request) *http.Response {

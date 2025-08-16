@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/ddkwork/golibrary/mylog"
-	"github.com/ddkwork/golibrary/stream"
-	"github.com/ddkwork/golibrary/stream/net/httpClient"
+	"github.com/ddkwork/golibrary/std/mylog"
+	"github.com/ddkwork/golibrary/std/stream"
+	"github.com/ddkwork/golibrary/std/stream/net/httpClient"
 	"github.com/ddkwork/mitmproxy/internal/mitmproxy"
 
 	"github.com/ddkwork/mitmproxy/packet"
@@ -12,7 +12,7 @@ import (
 //go:generate  go run -x .
 
 func main() {
-	mitmproxy.New("8080", func(session *packet.Session) {
+	mitmproxy.New("7890", func(session *packet.Session) {
 		switch session.SchemerType {
 		case httpClient.HttpType:
 			if session.StreamDirection == packet.Outbound {

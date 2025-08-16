@@ -10,7 +10,7 @@ import (
 
 	"github.com/hupe1980/golog"
 
-	"github.com/ddkwork/golibrary/mylog"
+	"github.com/ddkwork/golibrary/std/mylog"
 )
 
 type Socks4DialerOptions struct {

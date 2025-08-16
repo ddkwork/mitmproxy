@@ -8,7 +8,7 @@ import (
 	"io"
 	"net"
 
-	"github.com/ddkwork/golibrary/mylog"
+	"github.com/ddkwork/golibrary/std/mylog"
 	"github.com/ddkwork/mitmproxy/packet"
 )
 

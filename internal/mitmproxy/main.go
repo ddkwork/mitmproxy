@@ -6,7 +6,7 @@ import (
 	"net"
 	"net/http"
 
-	"github.com/ddkwork/golibrary/mylog"
+	"github.com/ddkwork/golibrary/std/mylog"
 )
 
 func proxy(w http.ResponseWriter, r *http.Request) {

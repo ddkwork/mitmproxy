@@ -30,7 +30,7 @@ import (
 
 	"github.com/ddkwork/mitmproxy/internal/ascii"
 
-	"github.com/ddkwork/golibrary/mylog"
+	"github.com/ddkwork/golibrary/std/mylog"
 )
 
 const fakeHopHeader = "X-Fake-Hop-Header-For-Test"

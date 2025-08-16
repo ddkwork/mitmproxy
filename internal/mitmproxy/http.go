@@ -12,9 +12,9 @@ import (
 	"github.com/ddkwork/mitmproxy/internal/ca"
 	"github.com/ddkwork/mitmproxy/packet"
 
-	"github.com/ddkwork/golibrary/mylog"
-	"github.com/ddkwork/golibrary/stream"
-	"github.com/ddkwork/golibrary/stream/net/httpClient"
+	"github.com/ddkwork/golibrary/std/mylog"
+	"github.com/ddkwork/golibrary/std/stream"
+	"github.com/ddkwork/golibrary/std/stream/net/httpClient"
 	"github.com/ddkwork/websocket"
 	"github.com/google/gopacket/layers"
 )
@@ -49,92 +49,103 @@ func (h *Http) Serve() {
 	// https 只有这个才需要关闭，逻辑上是
 
 	mylog.Call(func() {
-		for {
-			var err1 error
-			h.Request, err1 = http.ReadRequest(h.ReadWriter.Reader)
-			if mylog.Check(err1) {
-				continue
-			}
-			h.Packet.EditData = packet.EditData{ // todo
-				SchemerType:   h.Session.SchemerType,
-				Method:        h.Request.Method,
-				Host:          h.Request.URL.Host,
-				Path:          h.Request.URL.Path,
-				ContentType:   "",
-				ContentLength: 0,
-				Status:        "",
-				Note:          "",
-				Process:       "",
-				PadTime:       0,
-			}
-
-			if packet.IsTcp(h.Request.URL.Hostname()) { // todo test steam
-				mylog.Warning("IsTcp", h.Request.URL.Hostname())
-				NewTcp(h.Session).Serve()
-			}
-
-			aesKey := h.Request.Header.Get("aeskey")
-			if aesKey != "" {
-				h.ReqBodyDecoder.SteamAesKey = stream.NewHexDump(stream.HexDumpString(aesKey)).Bytes()
-			}
-			if websocket.IsWebSocketUpgrade(h.Request) {
-				if h.Request.URL.Host == "" {
-					h.Request.URL.Host = h.Request.Host
-				}
-				mylog.Warning("IsWebSocketUpgrade", h.Request.URL.Hostname())
-				NewWebSocket(h.Session).Serve()
-			}
-			PrepareRequest(h.IsTls(), h.Request, h.ClientConn)
-			RemoveHopByHopHeaders(h.Request.Header)
-
-			if h.Request.Method == http.MethodConnect { // 默认丢弃MethodConnect包不显示
-				h.ServeTls()
-			}
-
-			h.StreamDirection = packet.Inbound
-			if h.SchemerType != httpClient.HttpsType {
-				h.SchemerType = httpClient.HttpType
-			}
-			h.Packet = packet.MakeHttpRequestPacket(h.Request, h.Process, h.SchemerType) // invalid Read on closed Row
-			if h.Request.Body != nil {
-				mylog.Check(h.Request.Body.Close())
-			}
-
-			h.Response = mylog.Check2(h.transport.RoundTrip(h.Request))
-
-			h.Status = h.Response.Status
-			// if h.EventCallBack == nil {
-			// 	h.SessionEvent(h.Session)
-			// } else {
-			// 	h.EventCallBack(h.Session)
-			// }
-
-			h.StreamDirection = packet.Outbound
-			h.Packet = packet.MakeHttpResponsePacket(h.Response, h.SchemerType)
-			if h.EventCallBack == nil {
-				h.SessionEvent(h.Session)
-			} else {
-				// 这里gui不应该创建节点显示，应该保存返回的body和头部供给选中行事件显示，
-				// 同样上面的请求也是一样的，应该保存请的body和头部给选中行事件调用显示请求信息
-				h.EventCallBack(h.Session)
-			}
-			packet.WriteResponse(h.Response, h.ReadWriter)
-			mylog.Check(h.Response.Body.Close())
+		// 	for {
+		var err1 error
+		h.Request, err1 = http.ReadRequest(h.ReadWriter.Reader)
+		// if mylog.Check(err1) {
+		// 	return
+		// }
+		// if !mylog.Check(err1) {
+		// 	continue
+		// }
+		if err1 != nil {
+			return
 		}
+
+		h.Packet.EditData = packet.EditData{ // todo
+			SchemerType:   h.Session.SchemerType,
+			Method:        h.Request.Method,
+			Host:          h.Request.URL.Host,
+			Path:          h.Request.URL.Path,
+			ContentType:   "",
+			ContentLength: 0,
+			Status:        "",
+			Note:          "",
+			Process:       "",
+			PadTime:       0,
+		}
+
+		if packet.IsTcp(h.Request.URL.Hostname()) { // todo test steam
+			mylog.Warning("IsTcp", h.Request.URL.Hostname())
+			NewTcp(h.Session).Serve()
+		}
+
+		aesKey := h.Request.Header.Get("aeskey")
+		if aesKey != "" {
+			h.ReqBodyDecoder.SteamAesKey = stream.NewHexDump(stream.HexDumpString(aesKey)).Bytes()
+		}
+		if websocket.IsWebSocketUpgrade(h.Request) {
+			if h.Request.URL.Host == "" {
+				h.Request.URL.Host = h.Request.Host
+			}
+			mylog.Warning("IsWebSocketUpgrade", h.Request.URL.Hostname())
+			NewWebSocket(h.Session).Serve()
+		}
+		PrepareRequest(h.IsTls(), h.Request, h.ClientConn)
+		RemoveHopByHopHeaders(h.Request.Header)
+
+		if h.Request.Method == http.MethodConnect { // 默认丢弃MethodConnect包不显示
+			h.ServeTls()
+		}
+
+		h.StreamDirection = packet.Inbound
+		if h.SchemerType != httpClient.HttpsType {
+			h.SchemerType = httpClient.HttpType
+		}
+		h.Packet = packet.MakeHttpRequestPacket(h.Request, h.Process, h.SchemerType) // invalid Read on closed Row
+		if h.Request.Body != nil {
+			mylog.Check(h.Request.Body.Close())
+		}
+
+		h.Response = mylog.Check2(h.transport.RoundTrip(h.Request))
+
+		h.Status = h.Response.Status
+		// if h.EventCallBack == nil {
+		// 	h.SessionEvent(h.Session)
+		// } else {
+		// 	h.EventCallBack(h.Session)
+		// }
+
+		h.StreamDirection = packet.Outbound
+		h.Packet = packet.MakeHttpResponsePacket(h.Response, h.SchemerType)
+		if h.EventCallBack == nil {
+			h.SessionEvent(h.Session)
+		} else {
+			// 这里gui不应该创建节点显示，应该保存返回的body和头部供给选中行事件显示，
+			// 同样上面的请求也是一样的，应该保存请的body和头部给选中行事件调用显示请求信息
+			h.EventCallBack(h.Session)
+		}
+		packet.WriteResponse(h.Response, h.ReadWriter)
+		mylog.Check(h.Response.Body.Close())
+		// 	}
 	})
 }
 
 func (h *Http) ServeTls() {
-	defer func() { mylog.Check(h.ClientConn.Close()) }() // todo  use of closed network connection ,连接是在监听结束一次后才关闭的，这里的上一层才有关闭操作啊，why？
+	if h.Request == nil {
+		h.Request = mylog.Check2(http.NewRequest(http.MethodConnect, "http://"+ca.ProxyServeAddress(), nil))
+	}
+
+	// defer func() { mylog.CheckIgnore(h.ClientConn.Close()) }() // todo  use of closed network connection ,连接是在监听结束一次后才关闭的，这里的上一层才有关闭操作啊，why？
 	h.Response = packet.NewResponse(http.StatusOK, nil, h.Request)
 	packet.WriteResponse(h.Response, h.ReadWriter)
 	mylog.Check(h.Response.Body.Close())
 	h.Packet = packet.MakeHttpResponsePacket(h.Response, h.SchemerType)
 	h.StreamDirection = packet.Outbound
 	if packet.IsTcp(h.Request.URL.Hostname()) {
-		mylog.Warning("IsTcp", h.Request.URL.Hostname())
-		h.SchemerType = httpClient.TcpType
-		NewTcp(h.Session).Serve()
+		// mylog.Warning("IsTcp", h.Request.URL.Hostname())
+		// h.SchemerType = httpClient.TcpType
+		// NewTcp(h.Session).Serve()
 	}
 
 	b := make([]byte, 1)
@@ -149,13 +160,26 @@ func (h *Http) ServeTls() {
 		Conn:   h.ClientConn,
 		Reader: io.MultiReader(bytes.NewReader(b), bytes.NewReader(buf), h.ClientConn),
 	}
+
+	// tls 套件解析  todo
+
+	// conn := tls.Client(peekConn, ca.Cfg.NewTlsConfigForHost(h.Request.URL.Host))
+	// clientHello, context := mylog.Check3(conn.readClientHello())
+	// mylog.Check(conn.serverHandshake(context.Background())) // http不设置证书代理https流量，所有协议只需一个监听端口
+
 	layer := layers.TLSType(b[0])
 	if layer == layers.TLSHandshake {
 		mylog.Hex(h.Request.URL.String(), layer)
-		tlsConn := tls.Server(peekConn, ca.Cfg.NewTlsConfigForHost(h.Request.URL.Host))
-		mylog.Check(tlsConn.Handshake())
-		mylog.Success("https Handshake Success", h.Request.Method, " ", h.Request.URL.String())
-		h.Session = packet.NewSession(tlsConn, httpClient.HttpsType, h.EventCallBack)
+		var tlsClientConn *tls.Conn
+
+		tlsClientConn = tls.Server(peekConn, ca.Cfg.NewTlsConfigForHost(h.Request.URL.Host))
+		// hello, _ := mylog.Check3(tlsClientConn.ClientHello())
+		// mylog.Check(tlsClientConn.ServerHandshake(hello))
+		mylog.Check(tlsClientConn.Handshake())
+
+		// ServerHandshake use top todo
+		// mylog.Success("https Handshake Success", h.Request.Method, " ", h.Request.URL.String())
+		h.Session = packet.NewSession(tlsClientConn, httpClient.HttpsType, h.EventCallBack)
 		h.Serve()
 		return
 	}

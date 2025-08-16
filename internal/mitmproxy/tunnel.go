@@ -5,18 +5,20 @@ import (
 	"errors"
 	"io"
 
-	"github.com/ddkwork/golibrary/mylog"
-	"github.com/ddkwork/golibrary/stream"
+	"github.com/ddkwork/golibrary/std/mylog"
+	"github.com/ddkwork/golibrary/std/stream"
 	"github.com/ddkwork/mitmproxy/packet"
 )
 
 func (t *Tcp) transfer(session *packet.Session, destination io.WriteCloser, source io.ReadCloser, direction packet.StreamDirection) {
-	defer func() {
-		mylog.Check(destination.Close())
-		mylog.Check(source.Close())
-	}()
-	buf := make([]byte, 32*1024)
-	mylog.Check2(t.copyBuffer(session, destination, source, buf, direction))
+	mylog.Call(func() {
+		defer func() {
+			mylog.Check(destination.Close())
+			mylog.Check(source.Close())
+		}()
+		buf := make([]byte, 32*1024)
+		mylog.Check2(t.copyBuffer(session, destination, source, buf, direction))
+	})
 }
 
 func (t *Tcp) copyBuffer(s *packet.Session, dst io.Writer, src io.Reader, buf []byte, direction packet.StreamDirection) (int64, error) {

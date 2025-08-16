@@ -8,7 +8,7 @@ import (
 	"net/url"
 	"sync"
 
-	"github.com/ddkwork/golibrary/mylog"
+	"github.com/ddkwork/golibrary/std/mylog"
 	"github.com/ddkwork/mitmproxy/internal/ca"
 
 	"github.com/hupe1980/socks"

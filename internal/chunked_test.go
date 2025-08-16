@@ -12,7 +12,7 @@ import (
 	"testing"
 	"testing/iotest"
 
-	"github.com/ddkwork/golibrary/mylog"
+	"github.com/ddkwork/golibrary/std/mylog"
 )
 
 func TestChunk(t *testing.T) {
